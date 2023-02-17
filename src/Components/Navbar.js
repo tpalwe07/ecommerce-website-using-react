@@ -7,6 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import React from 'react';
 import { useState,useEffect } from 'react';
 import {useNavigate } from 'react-router-dom';
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 
 const Navbarbt = () => {
@@ -58,7 +59,9 @@ const Navbarbt = () => {
             <Nav.Link href="/products" style={{paddingRight:'3rem'}}>Products</Nav.Link>
 
             <Nav.Link href="/contact" style={{paddingRight:'3rem'}}>Contact</Nav.Link>
-            <Nav.Link  onClick={handleOnClick} style={{paddingRight:'3rem'}}>{loginBtn}</Nav.Link>
+            <Nav.Link  onClick={handleOnClick} style={{paddingRight:'2rem'}}>{loginBtn}</Nav.Link>
+            <Nav.Link href="/cart" ><AiOutlineShoppingCart/></Nav.Link>
+
           </Nav>
           
         </Navbar.Collapse>

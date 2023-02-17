@@ -1,6 +1,5 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-
 import Home from './Components/Home';
 import Navbar from './Components/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,6 +9,8 @@ import Products from './Components/Products';
 import Loginpage from './Components/Loginpage';
 import Registrationpage from './Components/Registrationpage';
 import Details from './Components/Details';
+import CartPage from './Components/CartPage';
+import PrivateRoute from './Components/PrivateRoute';
 
 
 function App() {
@@ -27,8 +28,9 @@ function App() {
           <Route path="/products" element={<Products/>} />
           <Route path="/login" element={<Loginpage/>} />
           <Route path="/register" element={<Registrationpage/>} />
-          <Route path="/details/:id"  element={<Details/>} />
-
+          <Route path="/details/:id"  element={<Details/>} /> 
+          <Route path="/cart" element={<PrivateRoute><CartPage/></PrivateRoute>} />
+          
         </Routes>
       </div>
       <Footerpage/>

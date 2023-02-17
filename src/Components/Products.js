@@ -7,11 +7,11 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Cards from "./Cards";
+import ProductsFilterPage from "./ProductsFilterPage";
 
 const Products = () => {
-  const history = useNavigate();
-
   const [isChecked, setIsChecked] = useState({
     mobile: false,
     laptop: false,
@@ -21,42 +21,122 @@ const Products = () => {
   });
   const [container, setContainer] = useState([]);
   const [filtersList, setFiltersList] = useState([]);
+  const [search, setSearch] = useState("");
+  const [searchContainer, setSearchContainer] = useState([]);
+  const [sliderValue, setSliderValue] = useState([0]);
 
   const checkHandler = (e) => {
-    setIsChecked({ ...isChecked, [e.target.name]: !isChecked[e.target.name] });
+    const categoryName = e.target.name;
+    const categoryChecked = e.target.checked;
+    // console.log(categoryName, categoryChecked);
+    setIsChecked({ ...isChecked, [categoryName]: categoryChecked });
   };
 
   useEffect(() => {
-    setFiltersList([]);
-
-    Object.keys(isChecked).forEach((key, index) => {
-      if (isChecked[key] === true) {
-        setFiltersList([...filtersList, key]);
-        console.log(filtersList);
-      } else {
-        filtersList.splice(index, 1);
+    let newItems = [];
+    Object.keys(isChecked)?.map((key) => {
+      if (isChecked[key]) {
+        newItems.push(key);
       }
     });
+    setFiltersList(newItems);
   }, [isChecked]);
 
-  // useEffect(()=>{
-  //   console.log(isChecked)
-  // },[isChecked])
-  // useEffect(() => {}, [isChecked]);
+  // console.log(filtersList);
 
-  fetch("https://api.pujakaitem.com/api/products")
-    // .then(response => console.log(response.json() ))
+  const onSearch = (searchText) => {
+    if (searchText === "") {
+      setSearchContainer(container);
+    } else {
+      const searchFilters = container.filter((item) => {
+        if (
+          item.name.toLowerCase().includes(searchText) ||
+          item.category.toLowerCase().includes(searchText)
+        ) {
+          return container;
+        }
+      });
+      setSearchContainer(searchFilters);
+    }
+  };
 
-    
-    .then((response) => {
-      return response.json();
-    })
+  const filterByCompany = (item) => {
+    if (item.target.value === "1") {
+      setSearchContainer(container);
+    } else if (item.target.value === "2") {
+      const fCompany = container.filter((item) => {
+        if (item.company.includes("apple")) {
+          return container;
+        }
+      });
+      setSearchContainer(fCompany);
+    } else if (item.target.value === "3") {
+      const fCompany = container.filter((item) => {
+        if (item.company.includes("samsung")) {
+          return container;
+        }
+      });
+      setSearchContainer(fCompany);
+    } else if (item.target.value === "4") {
+      const fCompany = container.filter((item) => {
+        if (item.company.includes("dell")) {
+          return container;
+        }
+      });
+      setSearchContainer(fCompany);
+    } else if (item.target.value === "5") {
+      const fCompany = container.filter((item) => {
+        if (item.company.includes("nokia")) {
+          return container;
+        }
+      });
+      setSearchContainer(fCompany);
+    } else if (item.target.value === "6") {
+      const fCompany = container.filter((item) => {
+        if (item.company.includes("asus")) {
+          return container;
+        }
+      });
+      setSearchContainer(fCompany);
+    } else if (item.target.value === "7") {
+      const fCompany = container.filter((item) => {
+        if (item.company.includes("rolex")) {
+          return container;
+        }
+      });
+      setSearchContainer(fCompany);
+    }
+  };
 
-    .then((data) => {
-      setContainer(data);
-    })
-    .catch((err) => console.error(err));
-    
+  const clearFilters = (e) => {
+    setSearchContainer(container);
+    setFiltersList([]);
+    setIsChecked({
+      mobile: false,
+      laptop: false,
+      computer: false,
+      accessories: false,
+      watch: false,
+    });
+  };
+
+  const rangeSelector = (e,newValue) =>{
+    setSliderValue(e.target.value);
+    // console.log(e.target.value);
+  }
+  useEffect(() => {
+    fetch("https://api.pujakaitem.com/api/products")
+      // .then(response => console.log(response.json() ))
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setContainer(data);
+        setSearchContainer(data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <>
       <h1
@@ -80,70 +160,32 @@ const Products = () => {
           marginBottom: "2rem",
         }}
       >
-        <Form.Control size="lg" type="text" placeholder="Enter text here" />
+        <Form.Control
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value.toLowerCase());
+            onSearch(e.target.value.toLowerCase());
+          }}
+          size="lg"
+          type="text"
+          placeholder="Enter text here"
+        />
       </Form>
       <Container>
         <Row>
           <Col xs={3}>
-            <h3>Shop By</h3>
-            <Form.Label style={{ margin: "1rem 0px 2px 0px" }}>
-              Price
-            </Form.Label>
-            <Form.Range />
-            <Form.Label style={{ margin: "1rem 0px 2px 0px" }}>
-              Category
-            </Form.Label>
-            <Form.Check
-              name="mobile"
-              checked={isChecked.mobile}
-              onChange={checkHandler}
-              label="Mobile"
+            <ProductsFilterPage
+              isChecked={isChecked}
+              checkHandler={checkHandler}
+              filterByCompany={filterByCompany}
+              clearFilters={clearFilters}
+              sliderValue={sliderValue}
+              rangeSelector={rangeSelector}
             />
-            <Form.Check
-              name="laptop"
-              checked={isChecked.laptop}
-              onChange={checkHandler}
-              label="Laptop"
-            />
-            <Form.Check
-              name="computer"
-              checked={isChecked.computer}
-              onChange={checkHandler}
-              label="Computer"
-            />
-            <Form.Check
-              name="accessories"
-              checked={isChecked.accessories}
-              onChange={checkHandler}
-              label="Accessories"
-            />
-            <Form.Check
-              name="watch"
-              checked={isChecked.watch}
-              onChange={checkHandler}
-              label="Watch"
-            />
-            <Form.Label style={{ margin: "1rem 0px 2px 0px" }}>
-              Company
-            </Form.Label>
-            <DropdownButton
-              style={{ margin: "1rem 0px 2px 0px" }}
-              variant="outline-secondary"
-              title="All"
-              id="bg-nested-dropdown"
-            >
-              <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
-            </DropdownButton>
-            {/* <Form.Label style={{margin:'1rem 0px 2px 0px'}}>Colors</Form.Label> */}
-            <Button style={{ margin: "2rem 0px 2px 0px" }} variant="danger">
-              Clear Filters
-            </Button>{" "}
           </Col>
 
           <Col>
-            <Row>
-              {/* filter((item)=>item.category.includes(data)). */}
+            {/* <Row>
               {filtersList.length
                 ? container
                     .filter((item) => {
@@ -151,47 +193,37 @@ const Products = () => {
                     })
                     .map((item) => {
                       return (
-                        <Card
-                          style={{
-                            width: "18rem",
-                            marginLeft: "1rem",
-                            marginTop: "1rem",
-                            backgroundColor: "#f7f5f5",
-                          }}
-                        >
-                          <Card.Img variant="top" src={item.image} />
-                          <Card.Body>
-                            <Card.Title>
-                              {" "}
-                              {item.name} {item.category}
-                            </Card.Title>
-                            <Card.Text>{item.price} Rs</Card.Text>
-                            <Button to={`/details/${item.id}`} variant="primary">Go somewhere</Button>
-                          </Card.Body>
-                        </Card>
+                        <>
+                          <Cards item={item} />
+                        </>
                       );
                     })
                 : container.map((item) => {
                     return (
-                      <Card
-                        style={{
-                          width: "18rem",
-                          marginLeft: "1rem",
-                          marginTop: "1rem",
-                          backgroundColor: "#f7f5f5",
-                        }}
-                      >
-                        <Card.Img variant="top" src={item.image} />
-                        <Card.Body>
-                          <Card.Title>
-                            {" "}
-                            {item.name} {item.category}
-                          </Card.Title>
-                          
-                          <Card.Text>{item.price} Rs</Card.Text>
-                          <Link to={`/details/${item.id}`} > Go somewhere </Link>
-                        </Card.Body>
-                      </Card>
+                      <>
+                        <Cards item={item} />
+                      </>
+                    );
+                  })}
+            </Row> */}
+            <Row>
+              {filtersList.length
+                ? searchContainer
+                    ?.filter((item) => {
+                      return filtersList.includes(item.category);
+                    })
+                    ?.map((item) => {
+                      return (
+                        <>
+                          <Cards item={item} />
+                        </>
+                      );
+                    })
+                : searchContainer?.map((item) => {
+                    return (
+                      <>
+                        <Cards item={item} />
+                      </>
                     );
                   })}
             </Row>
