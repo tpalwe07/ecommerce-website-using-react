@@ -19,7 +19,7 @@ const Cards = ({item}) => {
           {item.name} {item.category}
         </Card.Title>
         <Card.Text>{item.price} Rs</Card.Text>
-        <Link to={`/details/${item.id}`}> Go somewhere </Link>
+        <Link style={{backgroundColor:'black',color:'white',textDecoration:'none',padding:'8px 62px',borderRadius:'5px'}} to={`/details/${item.id}`}> Go somewhere </Link>
       </Card.Body>
     </Card>
   );

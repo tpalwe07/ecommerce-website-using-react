@@ -8,68 +8,22 @@ import {
   MDBRow,
   MDBBtn
 } from 'mdb-react-ui-kit';
+import { BsInstagram,BsTwitter,BsLinkedin,BsGithub } from "react-icons/bs";
 
 export default function Footerpage() {
   return (
-    <MDBFooter className='text-center' color='dark'  style={{marginTop:'15rem',backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
+    <MDBFooter className='text-center' color='dark'  style={{marginTop:'15rem',backgroundColor: 'rgb(5 5 4 / 79%)'}}>
       <MDBContainer className='p-4'>
-        <section className='mb-4'>
-        <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#3b5998' }}
-            href='#!'
-            role='button'
-            
-          >
-            <MDBIcon fab icon='facebook-f' />
-          </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='twitter' />
-          </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='google' />
-          </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='instagram' />
-          </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='linkedin-in' />
-          </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='github' />
-          </MDBBtn>
+        <section className='mb-0'>
+          <a href='https://www.instagram.com/tej_uss21/'><BsInstagram size={30} style={{marginRight:'1.5rem'}}  color='white'/></a>
+          <a href='https://twitter.com/palwe_tejas'><BsTwitter size={30} style={{marginRight:'1.5rem'}}  color='white'/></a>
+          <a href='https://www.linkedin.com/in/tejas-palwe-113829206/'><BsLinkedin  style={{marginRight:'1.5rem'}} size={30} color='white'/></a>
+          <a href='https://github.com/tpalwe07'><BsGithub size={30} color='white'/></a>
         </section>
 
-        <section className=''>
-          <form action=''>
-            <MDBRow className='d-flex justify-content-center'>
-              <MDBCol size="auto">
-                <p className='pt-2'>
-                  <strong>Sign up for our newsletter</strong>
-                </p>
-              </MDBCol>
-
-              <MDBCol md='5' start>
-                <MDBInput contrast type='email' placeholder='Email address' className='mb-4' />
-              </MDBCol>
-
-              <MDBCol size="auto">
-                <MDBBtn outline color='light' type='submit' className='mb-4'>
-                  Subscribe
-                </MDBBtn>
-              </MDBCol>
-            </MDBRow>
-          </form>
-        </section> 
       </MDBContainer>
 
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <div className='text-center p-3' style={{ backgroundColor: 'rgb(5 5 4 0)' ,color:'white'}}>
         © 2023 Copyright :  
         <a className='text-white' href='https://github.com/tpalwe07'>
            https://github.com/tpalwe07

@@ -25,7 +25,7 @@ const ProductsFilterPage = ({
       <h3>Shop By</h3>
       <Form.Label style={{ margin: "1rem 0px 2px 0px" }}>Price</Form.Label>
       <Form.Range value={sliderValue} onChange={rangeSelector} /> 
-      <Box sx={{ width: 300 }}>
+      {/* <Box sx={{ width: 300 }}>
       <Slider
         aria-label="Temperature"
         defaultValue={30}
@@ -36,7 +36,7 @@ const ProductsFilterPage = ({
         min={0}
         max={110}
       />
-    </Box>
+    </Box> */}
       <Form.Label style={{ margin: "1rem 0px 2px 0px" }}>Category</Form.Label>
       <Form.Check
         name="mobile"

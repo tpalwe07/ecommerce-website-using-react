@@ -42,7 +42,7 @@ const Navbarbt = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand style={{fontWeight:'bolder',marginLeft:'2rem',fontSize:'2rem'}} href="/">Emart</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll" style={{justifyContent:'flex-end'}} >
           <Nav
@@ -50,17 +50,17 @@ const Navbarbt = () => {
             style={{ maxHeight: '100px'}}
             navbarScroll
           >
-            <Nav.Link href="/" style={{paddingRight:'3rem'}}>Home</Nav.Link>
+            <Nav.Link href="/" style={{paddingRight:'3rem',fontSize:'1.3rem'}}>Home</Nav.Link>
             {/* <NavDropdown title="Products" style={{paddingRight:'3rem'}} id="navbarScrollingDropdown"> */}
               {/* <NavDropdown.Item href="/men" style={{paddingRight:'3rem'}}>Products</NavDropdown.Item> */}
               {/* <NavDropdown.Item href="/women">  Women </NavDropdown.Item> */}
               {/* <NavDropdown.Item href="/kids">Kids</NavDropdown.Item> */}
             {/* </NavDropdown> */}
-            <Nav.Link href="/products" style={{paddingRight:'3rem'}}>Products</Nav.Link>
+            <Nav.Link href="/products" style={{paddingRight:'3rem',fontSize:'1.3rem'}}>Products</Nav.Link>
 
-            <Nav.Link href="/contact" style={{paddingRight:'3rem'}}>Contact</Nav.Link>
-            <Nav.Link  onClick={handleOnClick} style={{paddingRight:'2rem'}}>{loginBtn}</Nav.Link>
-            <Nav.Link href="/cart" ><AiOutlineShoppingCart/></Nav.Link>
+            <Nav.Link href="/contact" style={{paddingRight:'3rem',fontSize:'1.3rem'}}>Contact</Nav.Link>
+            <Nav.Link  onClick={handleOnClick} style={{paddingRight:'2rem',fontSize:'1.3rem'}}>{loginBtn}</Nav.Link>
+            <Nav.Link href="/cart" ><AiOutlineShoppingCart size={25}/></Nav.Link>
 
           </Nav>
           
