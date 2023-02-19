@@ -1,27 +1,42 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+// import './Component.css';
+const Cards = ({ item }) => {
+  const CardButtonLink = styled(Link)`
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 700px) {
+      // color: red;
+    }
+  `;
 
-const Cards = ({item}) => {
+  const ProductCard = styled(Card)`
+    width: 18rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    background-color: #f7f5f5;
+    @media (max-width: 700px) {
+      width: 23rem;
+    }
+  `;
   return (
-    <Card
-      style={{
-        width: "18rem",
-        marginLeft: "1rem",
-        marginTop: "1rem",
-        backgroundColor: "#f7f5f5",
-      }}
-    >
+    <ProductCard>
       <Card.Img variant="top" src={item.image} />
       <Card.Body>
-        <Card.Title>
+        <CardButtonLink id="cartNameButton" to={`/details/${item.id}`}>
           {" "}
-          {item.name} {item.category}
-        </Card.Title>
+          {item.name} {item.category}{" "}
+        </CardButtonLink>
         <Card.Text>{item.price} Rs</Card.Text>
-        <Link style={{backgroundColor:'black',color:'white',textDecoration:'none',padding:'8px 62px',borderRadius:'5px'}} to={`/details/${item.id}`}> Go somewhere </Link>
       </Card.Body>
-    </Card>
+    </ProductCard>
   );
 };
 

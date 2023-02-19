@@ -16,7 +16,11 @@ const Home = () => {
       align-items: center;
       justify-content: center;
       background-size: cover;
-      height: 680px;
+      height: 730px;
+      @media (max-width: 700px) {
+        height: 380px;
+        // width:50px
+      }
     }
     .each-slide-effect span {
       padding: 20px;
@@ -24,6 +28,73 @@ const Home = () => {
       background: #efefef;
       text-align: center;
     }
+  `;
+  const GroupCard = styled(CardGroup)`
+    margin-top: 2rem;
+    margin-right: 5rem;
+    margin-left: 5rem;
+    @media (max-width: 700px) {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  `;
+  const Cards = styled(Card)`
+    width: 18rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: 1.5rem;
+    background-color: #f7f5f5;
+    @media (max-width: 700px) {
+      width: 21rem;
+    }
+  `;
+  const CardButtonLink = styled(Link)`
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  `;
+  const SectionTextDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `;
+  const SectionUpperTextDiv = styled.div`
+    background: none;
+    color: white;
+    font-size: 2rem;
+    @media (max-width: 700px) {
+      font-size: 1rem;
+    }
+   
+  `;
+
+  const SliderButton = styled(Link)`
+    border: 2px solid white;
+    border-radius: 10px;
+    background: none;
+    color: white;
+    font-weight: bolder;
+    font-size: 2rem;
+    text-decoration: none;
+    padding: 5px;
+    text-align: center;
+    width: 10rem;
+    @media (max-width: 700px) {
+      width: 6rem;
+      font-size: 1rem;
+      font-weight: normal;
+    };
+    &:hover {
+      color: white;
+      background-color:#ffffff63;
+      border-color:#ffffff63;
+      
+    }
+
   `;
 
   return (
@@ -37,45 +108,16 @@ const Home = () => {
                   "url(https://cdn.shopify.com/s/files/1/0115/0272/files/2022-Earth-iPhone-SE-V3.4_35f23380-2e0d-482e-8e3c-a0ccd8384c0e_1944x.jpg?v=1658357554)",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                {/* <Link to={`/details/${item.id}`}> Go somewhere </Link> */}
-                <div
-                  style={{
-                    background: "none",
-                    color: "white",
-                    fontSize: "2rem",
-                  }}
-                >
-                  Experience the most authentic
-                </div>
-                <Link
-                  //   onMouseOver={onMouseOver1}
-                  className="slideIMGButton"
-                  to={"/details/thapaserialnoa"}
-                  style={{
-                    border: "2px solid white",
-                    borderRadius: "10px",
-                    background: "none",
-                    color: "white",
-                    fontWeight: "bolder",
-                    fontSize: "2rem",
-                    textDecoration: "none",
-                    padding: "5px",
-                    textAlign: "center",
-                    width: "10rem",
-                  }}
-                >
+              <SectionTextDiv>
+                <SectionUpperTextDiv>
+                  {" "}
+                  Experience the most authentic{" "}
+                </SectionUpperTextDiv>
+                <SliderButton to={"/details/thapaserialnoa"}>
                   {" "}
                   iphone X{" "}
-                </Link>
-                {/* <button  style={{border:'none',background:'none',color:'white',fontWeight:'bolder',fontSize:'3rem'}}>Iphone X </button > */}
-              </div>
+                </SliderButton>
+              </SectionTextDiv>
             </div>
           </div>
           <div className="each-slide-effect">
@@ -104,108 +146,48 @@ const Home = () => {
         >
           Featured Products
         </h2>
-        <CardGroup
-          style={{
-            marginTop: "2rem",
-            marginRight: "5rem",
-            marginLeft: "5rem",
-          }}
-        >
-          <Card
-            style={{
-              width: "18rem",
-              marginLeft: "1rem",
-              marginTop: "1rem",
-              backgroundColor: "#f7f5f5",
-            }}
-          >
+        <GroupCard>
+          <Cards>
             <Card.Img
               variant="top"
               src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             />
             <Card.Body>
-              <Card.Title>Dell Series Laptop</Card.Title>
+              <CardButtonLink to={"/details/thapaserialnoc"}>
+                Dell Series Laptop
+              </CardButtonLink>
               <Card.Text>Rating : 4.2/5</Card.Text>
               <Card.Text>7,02,899 Rs</Card.Text>
-              <Link
-                style={{
-                  backgroundColor: "black",
-                  color: "white",
-                  textDecoration: "none",
-                  padding: "12px 140px",
-                  borderRadius: "5px",
-                }}
-                to={"/details/thapaserialnoc"}
-              >
-                {" "}
-                Go somewhere{" "}
-              </Link>
             </Card.Body>
-          </Card>
-          <Card
-            style={{
-              width: "18rem",
-              marginLeft: "1rem",
-              marginTop: "1rem",
-              backgroundColor: "#f7f5f5",
-            }}
-          >
+          </Cards>
+          <Cards>
             <Card.Img
               variant="top"
               src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             />
             <Card.Body>
-              <Card.Title>Samsung S20 5G</Card.Title>
+              <CardButtonLink to={"/details/thapaserialnob"}>
+                Samsung S20 5G
+              </CardButtonLink>
               <Card.Text>Rating : 4.4/5</Card.Text>
 
               <Card.Text>5,00,000 Rs</Card.Text>
-              <Link
-                style={{
-                  backgroundColor: "black",
-                  color: "white",
-                  textDecoration: "none",
-                  padding: "12px 140px",
-                  borderRadius: "5px",
-                }}
-                to={"/details/thapaserialnob"}
-              >
-                {" "}
-                Go somewhere{" "}
-              </Link>
             </Card.Body>
-          </Card>
-          <Card
-            style={{
-              width: "18rem",
-              marginLeft: "1rem",
-              marginTop: "1rem",
-              backgroundColor: "#f7f5f5",
-            }}
-          >
+          </Cards>
+          <Cards>
             <Card.Img
               variant="top"
               src="https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             />
             <Card.Body>
-              <Card.Title>Premium iwatch</Card.Title>
+              <CardButtonLink to={"/details/thapaserialnoi"}>
+                Premium iwatch
+              </CardButtonLink>
               <Card.Text>Rating : 4.6/5</Card.Text>
               <Card.Text>1,09,999 Rs</Card.Text>
-              <Link
-                style={{
-                  backgroundColor: "black",
-                  color: "white",
-                  textDecoration: "none",
-                  padding: "12px 140px",
-                  borderRadius: "5px",
-                }}
-                to={"/details/thapaserialnoi"}
-              >
-                {" "}
-                Go somewhere{" "}
-              </Link>
             </Card.Body>
-          </Card>
-        </CardGroup>
+          </Cards>
+        </GroupCard>
       </Wrapper>
     </div>
   );

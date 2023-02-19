@@ -10,6 +10,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { Link } from "react-router-dom";
 import Cards from "./Cards";
 import ProductsFilterPage from "./ProductsFilterPage";
+import styled from "styled-components";
 
 const Products = () => {
   const [isChecked, setIsChecked] = useState({
@@ -120,10 +121,10 @@ const Products = () => {
     });
   };
 
-  const rangeSelector = (e,newValue) =>{
+  const rangeSelector = (e, newValue) => {
     setSliderValue(e.target.value);
     // console.log(e.target.value);
-  }
+  };
   useEffect(() => {
     fetch("https://api.pujakaitem.com/api/products")
       // .then(response => console.log(response.json() ))
@@ -136,30 +137,42 @@ const Products = () => {
       })
       .catch((err) => console.error(err));
   }, []);
+  const H1Gadgets = styled.h1`
+    padding: 45px 0px 0px 40px;
+    margin-top: 3rem;
+    margin-right: 7rem;
+    margin-left: 7rem;
+    height: 11rem;
+    background-color: #a76e6e;
+    color: white;
+    @media (max-width: 700px) {
+      margin-right: 2rem;
+      margin-left: 2rem;
+      margin-top: 1rem;
+      height: 10rem;
+    }
+  `;
+  const SearchInput = styled(Form)`
+    margin: auto;
+    width: 40rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    @media (max-width: 700px) {
+      width: 22rem;
+    }
+  `;
 
+  const FilterColumn=styled(Col)`
+  @media (max-width: 700px) {
+    width: 100%;
+    padding-left:1rem
+  }
+  `
+  
   return (
     <>
-      <h1
-        style={{
-          padding: "45px 0px 0px 40px",
-          marginTop: "3rem",
-          marginRight: "7rem",
-          marginLeft: "7rem",
-          height: "11rem",
-          backgroundColor: "#a76e6e",
-          color: "white",
-        }}
-      >
-        Gadgets
-      </h1>
-      <Form
-        style={{
-          margin: "auto",
-          width: "40rem",
-          marginTop: "2rem",
-          marginBottom: "2rem",
-        }}
-      >
+      <H1Gadgets> Gadgets </H1Gadgets>
+      <SearchInput>
         <Form.Control
           value={search}
           onChange={(e) => {
@@ -170,10 +183,10 @@ const Products = () => {
           type="text"
           placeholder="Enter text here"
         />
-      </Form>
+      </SearchInput>
       <Container>
         <Row>
-          <Col xs={3}>
+          <FilterColumn xs={3}>
             <ProductsFilterPage
               isChecked={isChecked}
               checkHandler={checkHandler}
@@ -182,7 +195,7 @@ const Products = () => {
               sliderValue={sliderValue}
               rangeSelector={rangeSelector}
             />
-          </Col>
+          </FilterColumn>
 
           <Col>
             {/* <Row>
