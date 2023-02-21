@@ -14,19 +14,37 @@ const Details = () => {
   const [container, setContainer] = useState(null);
   const [loading, setLoading] = useState(false);
 
-const loginKey = JSON.parse(localStorage.getItem("activeLogin"));
+  const loginKey = JSON.parse(localStorage.getItem("activeLogin"));
 
-  const [newUserID, setNewUserID] = useState(id);
-  const [userIdArr, setUserIdArr] = useState([]);
 
- 
   const onCartClick = () => {
     if (!loginKey) {
       return alert("oops you are not login");
-    } 
-    else {
-      setUserIdArr([newUserID,id]);
-      localStorage.setItem("Ids",JSON.stringify(userIdArr))
+    } else {
+      // let cartItems = localStorage.getItem("cart");
+      // cartItems = cartItems ? JSON.parse(cartItems) : [];
+      // if (cartItems.includes(id)) {
+      //   return alert("Already added");
+      // }
+      // cartItems.push(id);
+      // localStorage.setItem("cart", JSON.stringify(cartItems));
+
+      let userEmail = loginKey[0].email;
+      let cartItems = localStorage.getItem("cart");
+      // console.log(cartItems);
+      cartItems = cartItems ? JSON.parse(cartItems) : {};
+      let userCartItems = cartItems[userEmail] ? cartItems[userEmail] : [];
+      console.log(userCartItems);
+
+      if (userCartItems.includes(id)) {
+        return alert("Already added");
+      }
+
+      cartItems[userEmail] = [...userCartItems, id];
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+
+     
+
     }
   };
 
@@ -47,9 +65,8 @@ const loginKey = JSON.parse(localStorage.getItem("activeLogin"));
       });
   };
 
-  useEffect(() => {
-    getProductDetails();
-  }, []);
+  useEffect(()=>getProductDetails(),[])
+ 
   const Button = styled.button`
     border: 0px;
     height: 2.7rem;
@@ -59,9 +76,11 @@ const loginKey = JSON.parse(localStorage.getItem("activeLogin"));
     color: white;
     background-color: black;
   `;
+
+  
   return (
     <div>
-      {console.log(container)}
+      {/* {console.log(container)} */}
       <Container style={{ marginTop: "4rem " }}>
         {!loading && container ? (
           <Row>
@@ -98,11 +117,19 @@ const loginKey = JSON.parse(localStorage.getItem("activeLogin"));
               </Container>
             </Col>
             <Col xs={5}>
-              <h1 style={{marginBottom:'2rem'}}>{container?.name || "Product Name"}</h1>
+              <h1 style={{ marginBottom: "2rem" }}>
+                {container?.name || "Product Name"}
+              </h1>
               <h4>Rating : {container.stars} / 5</h4>
-              <div style={{marginBottom:'1rem'}}>{container?.description || "Description"}</div>
-              <h5 style={{marginBottom:'1rem'}}>{container.reviews} reviews</h5>
-              <h1 style={{marginBottom:'1rem'}}>₹{container?.price || "0"}</h1>
+              <div style={{ marginBottom: "1rem" }}>
+                {container?.description || "Description"}
+              </div>
+              <h5 style={{ marginBottom: "1rem" }}>
+                {container.reviews} reviews
+              </h5>
+              <h1 style={{ marginBottom: "1rem" }}>
+                ₹{container?.price || "0"}
+              </h1>
               <Button
                 onClick={onCartClick}
                 className="mb-4 px-5 "

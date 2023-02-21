@@ -4,9 +4,7 @@ import { Slide } from "react-slideshow-image";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import "react-slideshow-image/dist/styles.css";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { margin } from "@mui/system";
 
 // import { Image } from "react-bootstrap";
 const Home = () => {
@@ -57,12 +55,12 @@ const Home = () => {
       text-decoration: underline;
     }
   `;
-  const SectionTextDiv = styled.div`
+  const SliderSecTextDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
   `;
-  const SectionUpperTextDiv = styled.div`
+  const SliderUpperTextDiv = styled.div`
     background: none;
     color: white;
     font-size: 2rem;
@@ -108,23 +106,23 @@ const Home = () => {
                   "url(https://cdn.shopify.com/s/files/1/0115/0272/files/2022-Earth-iPhone-SE-V3.4_35f23380-2e0d-482e-8e3c-a0ccd8384c0e_1944x.jpg?v=1658357554)",
               }}
             >
-              <SectionTextDiv>
-                <SectionUpperTextDiv>
+              <SliderSecTextDiv>
+                <SliderUpperTextDiv>
                   {" "}
                   Experience the most authentic{" "}
-                </SectionUpperTextDiv>
+                </SliderUpperTextDiv>
                 <SliderButton to={"/details/thapaserialnoa"}>
                   {" "}
                   iphone X{" "}
                 </SliderButton>
-              </SectionTextDiv>
+              </SliderSecTextDiv>
             </div>
           </div>
           <div className="each-slide-effect">
             <div
               style={{
                 backgroundImage:
-                  "url(https://cdn.shopify.com/s/files/1/0115/0272/files/2022-Earth-AirTag_1944x.jpg?v=1658356999)",
+                  "url(https://images.pexels.com/photos/261662/pexels-photo-261662.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
               }}
             ></div>
           </div>
@@ -132,7 +130,7 @@ const Home = () => {
             <div
               style={{
                 backgroundImage:
-                  "url(https://images.unsplash.com/photo-1444525873963-75d329ef9e1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80)",
+                  "url(https://c4.wallpaperflare.com/wallpaper/995/560/1024/models-model-lena-anderson-woman-wallpaper-preview.jpg)",
               }}
             ></div>
           </div>

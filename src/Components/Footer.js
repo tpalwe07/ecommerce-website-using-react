@@ -1,12 +1,7 @@
 import React from 'react';
 import {
   MDBFooter,
-  MDBContainer,
-  MDBIcon,
-  MDBInput,
-  MDBCol,
-  MDBRow,
-  MDBBtn
+  MDBContainer
 } from 'mdb-react-ui-kit';
 import { BsInstagram,BsTwitter,BsLinkedin,BsGithub } from "react-icons/bs";
 import styled from 'styled-components';
@@ -18,10 +13,8 @@ margin-top:15rem;
 background-color:rgb(5 5 4 / 79%);
 @media (max-width: 700px) {
   margin-top:3rem;
-
 }
 `
-// style={{marginTop:'15rem',backgroundColor: 'rgb(5 5 4 / 79%)'}}
   return (
     <Footer className='text-center' color='light'  >
       <MDBContainer className='p-4'>

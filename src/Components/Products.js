@@ -1,13 +1,8 @@
-import Card from "react-bootstrap/Card";
-import { Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
-import { Link } from "react-router-dom";
 import Cards from "./Cards";
 import ProductsFilterPage from "./ProductsFilterPage";
 import styled from "styled-components";
@@ -43,7 +38,6 @@ const Products = () => {
     setFiltersList(newItems);
   }, [isChecked]);
 
-  // console.log(filtersList);
 
   const onSearch = (searchText) => {
     if (searchText === "") {
