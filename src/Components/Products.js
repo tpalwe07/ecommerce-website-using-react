@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,8 +6,11 @@ import Form from "react-bootstrap/Form";
 import Cards from "./Cards";
 import ProductsFilterPage from "./ProductsFilterPage";
 import styled from "styled-components";
+import "./Style.css";
 
 const Products = () => {
+
+  const refElement=useRef("");
   const [isChecked, setIsChecked] = useState({
     mobile: false,
     laptop: false,
@@ -38,6 +41,7 @@ const Products = () => {
     setFiltersList(newItems);
   }, [isChecked]);
 
+ 
 
   const onSearch = (searchText) => {
     if (searchText === "") {
@@ -51,15 +55,18 @@ const Products = () => {
           return container;
         }
       });
+      // refElement.current.focus();
       setSearchContainer(searchFilters);
     }
+    
+
   };
 
   const filterByCompany = (item) => {
     if (item.target.value === "1") {
       setSearchContainer(container);
     } else if (item.target.value === "2") {
-      const fCompany = container.filter((item) => {
+      const fCompany = container?.filter((item) => {
         if (item.company.includes("apple")) {
           return container;
         }
@@ -146,15 +153,15 @@ const Products = () => {
       height: 10rem;
     }
   `;
-  const SearchInput = styled(Form)`
-    margin: auto;
-    width: 40rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    @media (max-width: 700px) {
-      width: 22rem;
-    }
-  `;
+  // const SearchInput = styled(Form)`
+  //   margin: auto;
+  //   width: 40rem;
+  //   margin-top: 2rem;
+  //   margin-bottom: 2rem;
+  //   @media (max-width: 700px) {
+  //     width: 22rem;
+  //   }
+  // `;
 
   const FilterColumn=styled(Col)`
   @media (max-width: 700px) {
@@ -166,9 +173,10 @@ const Products = () => {
   return (
     <>
       <H1Gadgets> Gadgets </H1Gadgets>
-      <SearchInput>
+      <Form>
         <Form.Control
           value={search}
+          className="inputBar"
           onChange={(e) => {
             setSearch(e.target.value.toLowerCase());
             onSearch(e.target.value.toLowerCase());
@@ -177,7 +185,7 @@ const Products = () => {
           type="text"
           placeholder="Enter text here"
         />
-      </SearchInput>
+      </Form>
       <Container>
         <Row>
           <FilterColumn xs={3}>

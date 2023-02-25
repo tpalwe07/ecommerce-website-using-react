@@ -8,7 +8,7 @@ import React from 'react';
 import { useState,useEffect } from 'react';
 import {useNavigate } from 'react-router-dom';
 import { AiOutlineShoppingCart } from "react-icons/ai";
-
+import { ToastContainer, toast } from "react-toastify";
 
 const Navbarbt = () => {
 
@@ -19,9 +19,9 @@ const Navbarbt = () => {
 
   useEffect(()=>{
     if(loginKey){
-      toggleLoginBtn("logout")
+      toggleLoginBtn("Logout")
     }else{
-      toggleLoginBtn("login")
+      toggleLoginBtn("Login")
     }
   },loginKey)
   // const logoutBtn=localStorage.removeItem("activeLogin")
@@ -30,11 +30,14 @@ const Navbarbt = () => {
     e.preventDefault();
     if(!loginKey){
       history("/login");
+      // toast.success("Login Successful");
     }
     else{
       localStorage.removeItem("activeLogin");
       toggleLoginBtn("Login")
       history("/login")
+      toast.error("You have been logout Successfully");
+
     }
   }
 
@@ -43,12 +46,13 @@ const Navbarbt = () => {
     <Navbar bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand style={{fontWeight:'bolder',marginLeft:'2rem',fontSize:'2rem'}} href="/">Emart</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll" style={{justifyContent:'flex-end'}} >
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" style={{justifyContent:'flex-end'}} >
+
           <Nav
-            className=" my-2 my-lg-0  "
-            style={{ maxHeight: '100px'}}
-            navbarScroll
+            className=" my-2 my-lg-0   "
+            // style={{ maxHeight: '100px'}}
+            // navbarScroll
           >
             <Nav.Link href="/" style={{paddingRight:'3rem',fontSize:'1.3rem'}}>Home</Nav.Link>
             {/* <NavDropdown title="Products" style={{paddingRight:'3rem'}} id="navbarScrollingDropdown"> */}
@@ -59,13 +63,28 @@ const Navbarbt = () => {
             <Nav.Link href="/products" style={{paddingRight:'3rem',fontSize:'1.3rem'}}>Products</Nav.Link>
 
             <Nav.Link href="/contact" style={{paddingRight:'3rem',fontSize:'1.3rem'}}>Contact</Nav.Link>
+            <Nav.Link href="/cart" style={{paddingRight:'3rem',fontSize:'1.3rem'}} >Cart</Nav.Link>
+            {/* //<AiOutlineShoppingCart size={25}/> */}
             <Nav.Link  onClick={handleOnClick} style={{paddingRight:'2rem',fontSize:'1.3rem'}}>{loginBtn}</Nav.Link>
-            <Nav.Link href="/cart" ><AiOutlineShoppingCart size={25}/></Nav.Link>
 
           </Nav>
           
         </Navbar.Collapse>
+      {/* <Nav.Link  onClick={handleOnClick} style={{paddingRight:'2rem',fontSize:'1.3rem'}}>{loginBtn}</Nav.Link> */}
       </Container>
+
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Navbar>
   );
 }

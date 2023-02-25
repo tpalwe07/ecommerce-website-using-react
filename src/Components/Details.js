@@ -6,20 +6,21 @@ import Figure from "react-bootstrap/Figure";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-// import { useNavigate } from "react-router-dom";
-// import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Details = () => {
   const { id } = useParams();
   const [container, setContainer] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [imgIndex,setImgIndex] = useState(0);
 
   const loginKey = JSON.parse(localStorage.getItem("activeLogin"));
 
-
   const onCartClick = () => {
+    
     if (!loginKey) {
-      return alert("oops you are not login");
+      return toast.error("oops you are not login");
     } else {
       // let cartItems = localStorage.getItem("cart");
       // cartItems = cartItems ? JSON.parse(cartItems) : [];
@@ -37,14 +38,12 @@ const Details = () => {
       console.log(userCartItems);
 
       if (userCartItems.includes(id)) {
-        return alert("Already added");
+        // return alert("Already added");
+        return toast.error("Already added!");
       }
-
+      toast.success("Added Successfully!");
       cartItems[userEmail] = [...userCartItems, id];
       localStorage.setItem("cart", JSON.stringify(cartItems));
-
-     
-
     }
   };
 
@@ -65,8 +64,8 @@ const Details = () => {
       });
   };
 
-  useEffect(()=>getProductDetails(),[])
- 
+  useEffect(() => getProductDetails(), []);
+
   const Button = styled.button`
     border: 0px;
     height: 2.7rem;
@@ -77,46 +76,61 @@ const Details = () => {
     background-color: black;
   `;
 
-  
+  const handleImgOnclick=(index)=>{
+    setImgIndex(index);
+  }
+
+  const FigureStyle=styled(Figure)`
+  &:hover {
+    transform: scale(1.1);
+  }
+  `
+
   return (
     <div>
-      {/* {console.log(container)} */}
+      {console.log(container)}
       <Container style={{ marginTop: "4rem " }}>
         {!loading && container ? (
           <Row>
-            <Col>
-              <Container>
-                <Row>
-                  <Col xs={3}>
-                    {container?.image?.map((item) => {
-                      return (
-                        <Figure>
-                          <Figure.Image
-                            width={140} //671
-                            height={180} //480
-                            // alt="471x380"
-                            src={item?.url}
-                          />
-                        </Figure>
-                      );
-                    })}
-                  </Col>
-                  <Col>
-                    <Figure>
-                      <Figure.Image
-                        width={640} //671
-                        height={180} //480
-                        // alt="471x380"
-                        src={
-                          "https://images.pexels.com/photos/1275229/pexels-photo-1275229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        }
-                      />
-                    </Figure>
-                  </Col>
-                </Row>
-              </Container>
+            <Col xs={12} md={12} lg={6}>
+              {/* <Container>
+                <Col> */}
+
+              <Row>
+                {/* {console.log(container?.image[ImgName].url)} */}
+                {/* {container?.image[ImgName].url} */}
+                
+                <Figure>
+                  <Figure.Image
+                    width={640} //671
+                    height={180} //480
+                    // alt="471x380"
+                    src={container?.image[imgIndex].url}
+                  />
+                </Figure>
+              </Row>
+              <Row xs={1} xxl={0} lg={12}>
+                <Col>
+                  {container?.image?.map((item,index) => {
+                    return (
+                      <FigureStyle>
+                        <Figure.Image
+                          style={{ margin: "1px" }}
+                          onClick={()=>handleImgOnclick(index)}
+                          width={80} //671
+                          height={80} //480
+                          // alt="471x380"
+                          src={item?.url}
+                        />
+                      </FigureStyle>
+                    );
+                  })}
+                </Col>
+              </Row>
+              {/* </Col>
+              </Container> */}
             </Col>
-            <Col xs={5}>
+            <Col xs={12} lg={6}>
               <h1 style={{ marginBottom: "2rem" }}>
                 {container?.name || "Product Name"}
               </h1>
@@ -144,6 +158,18 @@ const Details = () => {
           <h1>Loading...</h1>
         )}
       </Container>
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };

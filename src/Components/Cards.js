@@ -10,7 +10,8 @@ const Cards = ({ item }) => {
     font-size: 18px;
     text-decoration: none;
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
+      color:black;
     }
     @media (max-width: 700px) {
       // color: red;
@@ -25,17 +26,19 @@ const Cards = ({ item }) => {
     @media (max-width: 700px) {
       width: 23rem;
     }
+    &:hover {
+      transform: scale(1.1);
+    }
   `;
   return (
     <ProductCard>
-      <Card.Img variant="top" src={item.image} />
-      <Card.Body>
-        <CardButtonLink id="cartNameButton" to={`/details/${item.id}`}>
+      <CardButtonLink id="cartNameButton" to={`/details/${item.id}`}>
+        <Card.Img variant="top" src={item.image} />
+        <Card.Body>
           {" "}
-          {item.name} {item.category}{" "}
-        </CardButtonLink>
-        <Card.Text>{item.price} Rs</Card.Text>
-      </Card.Body>
+          {item.name} {item.category} <Card.Text>{item.price} Rs</Card.Text>
+        </Card.Body>
+      </CardButtonLink>
     </ProductCard>
   );
 };

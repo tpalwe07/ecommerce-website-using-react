@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Slide } from "react-slideshow-image";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
@@ -55,10 +55,23 @@ const Home = () => {
       text-decoration: underline;
     }
   `;
+  const moveToRight=keyframes`
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+  `
   const SliderSecTextDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    animation: ${moveToRight} 0.5s ease-out;
+    animation-delay: 1000ms;
+    // animation-iteration-count: 2;
+    // animation-direction: reverse;
+}
   `;
   const SliderUpperTextDiv = styled.div`
     background: none;
@@ -67,7 +80,6 @@ const Home = () => {
     @media (max-width: 700px) {
       font-size: 1rem;
     }
-   
   `;
 
   const SliderButton = styled(Link)`
@@ -85,20 +97,18 @@ const Home = () => {
       width: 6rem;
       font-size: 1rem;
       font-weight: normal;
-    };
+    }
     &:hover {
       color: white;
-      background-color:#ffffff63;
-      border-color:#ffffff63;
-      
+      background-color: #ffffff63;
+      border-color: #ffffff63;
     }
-
   `;
 
   return (
     <div>
       <Wrapper>
-        <Slide autoplay={false}>
+        <Slide autoplay={true}>
           <div className="each-slide-effect">
             <div
               style={{

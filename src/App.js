@@ -11,7 +11,7 @@ import Registrationpage from './Components/Registrationpage';
 import Details from './Components/Details';
 import CartPage from './Components/CartPage';
 import PrivateRoute from './Components/PrivateRoute';
-
+// import Style from "./Comp"
 
 function App() {
 

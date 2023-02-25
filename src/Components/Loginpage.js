@@ -15,6 +15,8 @@ from 'mdb-react-ui-kit';
 import {Link,useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Navbar from './Navbar';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Loginpage= () => {
 
@@ -36,7 +38,8 @@ const Loginpage= () => {
         const getUserArr = localStorage.getItem("users");
         // console.log(getUserArr)
         if (!inputText.email || !inputText.password) {
-            alert("all fields are mandatory");
+            // alert("all fields are mandatory");
+            toast.error('all fields are mandatory');
         }
         else {
             if (getUserArr && getUserArr.length) {
@@ -47,7 +50,9 @@ const Loginpage= () => {
                     return e.email === inputText.email && e.password === inputText.password
                 })
                 if (userLogin.length === 0) {
-                    alert("wrong credential");
+                    // alert("wrong credential");
+                   toast.error('wrong credential');
+
                 }
                 else {
                     // console.log("user login successfully");
@@ -57,7 +62,9 @@ const Loginpage= () => {
                     // setFlag(true);
                 }
             }else{
-                alert("We don't have account with this mail id, please register")
+                // alert("We don't have account with this mail id, please register")
+                toast.error('we don not have account registered with this mail, please register');
+                
             }
         }
     }
@@ -107,7 +114,18 @@ const Loginpage= () => {
 
         </MDBRow>
       </MDBCard>
-
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </MDBContainer>
 
   );
