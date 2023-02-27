@@ -36,7 +36,7 @@ const Cards = ({ item }) => {
         <Card.Img variant="top" src={item.image} />
         <Card.Body>
           {" "}
-          {item.name} {item.category} <Card.Text>{item.price} Rs</Card.Text>
+          {item.name} {item.category} <Card.Text>Rs. {item.price}</Card.Text>
         </Card.Body>
       </CardButtonLink>
     </ProductCard>

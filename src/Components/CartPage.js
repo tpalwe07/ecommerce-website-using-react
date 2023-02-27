@@ -215,7 +215,7 @@ export default function ProductCards() {
                 style={{ fontWeight: "500" }}
               >
                 <p className="mb-2">Subtotal</p>
-                <p className="mb-2">$23.49</p>
+                <p className="mb-2">Rs. 1.2 Cr</p>
               </div>
 
               <div
@@ -223,7 +223,7 @@ export default function ProductCards() {
                 style={{ fontWeight: "500" }}
               >
                 <p className="mb-0">Shipping</p>
-                <p className="mb-0">$2.99</p>
+                <p className="mb-0">Rs. 4,000</p>
               </div>
 
               <hr className="my-4" />
@@ -233,7 +233,7 @@ export default function ProductCards() {
                 style={{ fontWeight: "500" }}
               >
                 <p className="mb-2">Total (tax included)</p>
-                <p className="mb-2">$26.48</p>
+                <p className="mb-2">1.24 Cr</p>
               </div>
             </MDBCol>
 

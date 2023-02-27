@@ -10,7 +10,7 @@ import "./Style.css";
 
 const Products = () => {
 
-  const refElement=useRef("");
+  // const refElement=useRef("");
   const [isChecked, setIsChecked] = useState({
     mobile: false,
     laptop: false,
@@ -23,6 +23,7 @@ const Products = () => {
   const [search, setSearch] = useState("");
   const [searchContainer, setSearchContainer] = useState([]);
   const [sliderValue, setSliderValue] = useState([0]);
+  const [valueAllCompany,setValueAllCompany] = useState(1)
 
   const checkHandler = (e) => {
     const categoryName = e.target.name;
@@ -113,6 +114,7 @@ const Products = () => {
   const clearFilters = (e) => {
     setSearchContainer(container);
     setFiltersList([]);
+    setSearch("");
     setIsChecked({
       mobile: false,
       laptop: false,
@@ -163,12 +165,12 @@ const Products = () => {
   //   }
   // `;
 
-  const FilterColumn=styled(Col)`
-  @media (max-width: 700px) {
-    width: 100%;
-    padding-left:1rem
-  }
-  `
+  // const FilterColumn=styled(Col)`
+  // @media (max-width: 700px) {
+  //   width: 100%;
+  //   padding-left:1rem
+  // }
+  // `
   
   return (
     <>
@@ -188,7 +190,7 @@ const Products = () => {
       </Form>
       <Container>
         <Row>
-          <FilterColumn xs={3}>
+          <Col xs={12} md={5} lg={3}>
             <ProductsFilterPage
               isChecked={isChecked}
               checkHandler={checkHandler}
@@ -197,7 +199,7 @@ const Products = () => {
               sliderValue={sliderValue}
               rangeSelector={rangeSelector}
             />
-          </FilterColumn>
+          </Col>
 
           <Col>
             {/* <Row>

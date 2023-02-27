@@ -43,9 +43,9 @@ const Navbarbt = () => {
 
     // const history=useNavigate();
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className='py-0'>
       <Container fluid>
-        <Navbar.Brand style={{fontWeight:'bolder',marginLeft:'2rem',fontSize:'2rem'}} href="/">Emart</Navbar.Brand>
+        <Navbar.Brand style={{fontWeight:'bolder',marginLeft:'1rem',fontSize:'2rem'}} href="/">T'mart</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" style={{justifyContent:'flex-end'}} >
 
@@ -54,18 +54,18 @@ const Navbarbt = () => {
             // style={{ maxHeight: '100px'}}
             // navbarScroll
           >
-            <Nav.Link href="/" style={{paddingRight:'3rem',fontSize:'1.3rem'}}>Home</Nav.Link>
+            <Nav.Link href="/" style={{paddingRight:'3rem',fontSize:'1.2rem'}}>Home</Nav.Link>
             {/* <NavDropdown title="Products" style={{paddingRight:'3rem'}} id="navbarScrollingDropdown"> */}
               {/* <NavDropdown.Item href="/men" style={{paddingRight:'3rem'}}>Products</NavDropdown.Item> */}
               {/* <NavDropdown.Item href="/women">  Women </NavDropdown.Item> */}
               {/* <NavDropdown.Item href="/kids">Kids</NavDropdown.Item> */}
             {/* </NavDropdown> */}
-            <Nav.Link href="/products" style={{paddingRight:'3rem',fontSize:'1.3rem'}}>Products</Nav.Link>
+            <Nav.Link href="/products" style={{paddingRight:'3rem',fontSize:'1.2rem'}}>Products</Nav.Link>
 
-            <Nav.Link href="/contact" style={{paddingRight:'3rem',fontSize:'1.3rem'}}>Contact</Nav.Link>
-            <Nav.Link href="/cart" style={{paddingRight:'3rem',fontSize:'1.3rem'}} >Cart</Nav.Link>
+            <Nav.Link href="/contact" style={{paddingRight:'3rem',fontSize:'1.2rem'}}>Contact</Nav.Link>
+            <Nav.Link href="/cart" style={{paddingRight:'3rem',fontSize:'1.2rem'}} >Cart</Nav.Link>
             {/* //<AiOutlineShoppingCart size={25}/> */}
-            <Nav.Link  onClick={handleOnClick} style={{paddingRight:'2rem',fontSize:'1.3rem'}}>{loginBtn}</Nav.Link>
+            <Nav.Link  onClick={handleOnClick} style={{paddingRight:'2rem',fontSize:'1.2rem'}}>{loginBtn}</Nav.Link>
 
           </Nav>
           

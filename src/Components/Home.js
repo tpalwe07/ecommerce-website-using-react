@@ -14,7 +14,7 @@ const Home = () => {
       align-items: center;
       justify-content: center;
       background-size: cover;
-      height: 730px;
+      height: 670px;
       @media (max-width: 700px) {
         height: 380px;
         // width:50px
@@ -37,13 +37,17 @@ const Home = () => {
     }
   `;
   const Cards = styled(Card)`
-    width: 18rem;
+    width: 24rem;
     margin-left: 1rem;
     margin-top: 1rem;
     margin-right: 1.5rem;
     background-color: #f7f5f5;
     @media (max-width: 700px) {
       width: 21rem;
+      
+    }
+    &:hover {
+      transform: scale(1.1);
     }
   `;
   const CardButtonLink = styled(Link)`
@@ -52,17 +56,18 @@ const Home = () => {
     font-size: 18px;
     text-decoration: none;
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
+      color: black;
     }
   `;
-  const moveToRight=keyframes`
+  const moveToRight = keyframes`
   0% {
     transform: translateY(100px);
   }
   100% {
     transform: translateY(0px);
   }
-  `
+  `;
   const SliderSecTextDiv = styled.div`
     display: flex;
     flex-direction: column;
@@ -87,7 +92,7 @@ const Home = () => {
     border-radius: 10px;
     background: none;
     color: white;
-    font-weight: bolder;
+    // font-weight: bolder;
     font-size: 2rem;
     text-decoration: none;
     padding: 5px;
@@ -100,8 +105,9 @@ const Home = () => {
     }
     &:hover {
       color: white;
-      background-color: #ffffff63;
-      border-color: #ffffff63;
+      // background-color: #ffffff63;
+      // border-color: #ffffff63;
+      transform: scale(1.1);
     }
   `;
 
@@ -155,46 +161,45 @@ const Home = () => {
           Featured Products
         </h2>
         <GroupCard>
-          <Cards>
-            <Card.Img
-              variant="top"
-              src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-            <Card.Body>
-              <CardButtonLink to={"/details/thapaserialnoc"}>
+          <CardButtonLink to={"/details/thapaserialnoc"}>
+            <Cards>
+              <Card.Img
+                variant="top"
+                src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              />
+              <Card.Body>
                 Dell Series Laptop
-              </CardButtonLink>
-              <Card.Text>Rating : 4.2/5</Card.Text>
-              <Card.Text>7,02,899 Rs</Card.Text>
-            </Card.Body>
-          </Cards>
-          <Cards>
-            <Card.Img
-              variant="top"
-              src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-            <Card.Body>
-              <CardButtonLink to={"/details/thapaserialnob"}>
+                <Card.Text>Rating : 4.2/5</Card.Text>
+                <Card.Text>7,02,899 Rs</Card.Text>
+              </Card.Body>
+            </Cards>
+          </CardButtonLink>
+          <CardButtonLink to={"/details/thapaserialnob"}>
+            <Cards>
+              <Card.Img
+                variant="top"
+                src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              />
+              <Card.Body>
                 Samsung S20 5G
-              </CardButtonLink>
-              <Card.Text>Rating : 4.4/5</Card.Text>
-
-              <Card.Text>5,00,000 Rs</Card.Text>
-            </Card.Body>
-          </Cards>
-          <Cards>
-            <Card.Img
-              variant="top"
-              src="https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            />
-            <Card.Body>
-              <CardButtonLink to={"/details/thapaserialnoi"}>
+                <Card.Text>Rating : 4.4/5</Card.Text>
+                <Card.Text>5,00,000 Rs</Card.Text>
+              </Card.Body>
+            </Cards>
+          </CardButtonLink>
+          <CardButtonLink to={"/details/thapaserialnoi"}>
+            <Cards>
+              <Card.Img
+                variant="top"
+                src="https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              />
+              <Card.Body>
                 Premium iwatch
-              </CardButtonLink>
-              <Card.Text>Rating : 4.6/5</Card.Text>
-              <Card.Text>1,09,999 Rs</Card.Text>
-            </Card.Body>
-          </Cards>
+                <Card.Text>Rating : 4.6/5</Card.Text>
+                <Card.Text>1,09,999 Rs</Card.Text>
+              </Card.Body>
+            </Cards>
+          </CardButtonLink>
         </GroupCard>
       </Wrapper>
     </div>

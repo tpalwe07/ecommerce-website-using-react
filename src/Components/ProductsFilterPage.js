@@ -4,8 +4,8 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import Slider from '@mui/material/Slider';
-import Box from '@mui/material/Box';
+import Slider from "@mui/material/Slider";
+import Box from "@mui/material/Box";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -24,19 +24,19 @@ const ProductsFilterPage = ({
     <div>
       <h3>Shop By</h3>
       <Form.Label style={{ margin: "1rem 0px 2px 0px" }}>Price</Form.Label>
-      <Form.Range value={sliderValue} onChange={rangeSelector} /> 
-      {/* <Box sx={{ width: 300 }}>
-      <Slider
-        aria-label="Temperature"
-        defaultValue={30}
-        getAriaValueText={valuetext}
-        valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={0}
-        max={110}
-      />
-    </Box> */}
+      {/* <Form.Range value={sliderValue} onChange={rangeSelector} />  */}
+      <Box sx={{ width: 300 }}>
+        <Slider
+          aria-label="Temperature"
+          defaultValue={1}
+          getAriaValueText={valuetext}
+          valueLabelDisplay="auto"
+          step={1}
+          marks
+          min={0}
+          max={100}
+        />
+      </Box>
       <Form.Label style={{ margin: "1rem 0px 2px 0px" }}>Category</Form.Label>
       <Form.Check
         name="mobile"
@@ -77,20 +77,21 @@ const ProductsFilterPage = ({
           onChange={filterByCompany}
         >
           <option selected value="1">
-            All
+            {" "}
+            All{" "}
           </option>
-          <option value="2">Apple </option>
-          <option value="3">Samsung</option>
-          <option value="4">Dell</option>
-          <option value="5">Nokia</option>
-          <option value="6">Asus</option>
-          <option value="7">Rolex</option>
+          <option value="2"> Apple </option>
+          <option value="3"> Samsung </option>
+          <option value="4"> Dell </option>
+          <option value="5"> Nokia </option>
+          <option value="6"> Asus </option>
+          <option value="7"> Rolex </option>
         </select>
       </div>
       {/* <Form.Label style={{margin:'1rem 0px 2px 0px'}}>Colors</Form.Label> */}
       <Button
         onClick={clearFilters}
-        style={{ margin: "2rem 0px 2px 0px" }}
+        style={{ margin: "0rem 0px 2px 0px" }}
         variant="danger"
       >
         Clear Filters
