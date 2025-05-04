@@ -9,6 +9,22 @@ import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const Button = styled.button`
+border: 0px;
+height: 2.7rem;
+color: white;
+font-size: 1.2rem;
+border-radius: 5px;
+color: white;
+background-color: black;
+`;
+
+const FigureStyle=styled(Figure)`
+&:hover {
+  transform: scale(1.1);
+}
+`
+
 const Details = () => {
   const { id } = useParams();
   const [container, setContainer] = useState(null);
@@ -22,14 +38,6 @@ const Details = () => {
     if (!loginKey) {
       return toast.error("oops you are not login");
     } else {
-      // let cartItems = localStorage.getItem("cart");
-      // cartItems = cartItems ? JSON.parse(cartItems) : [];
-      // if (cartItems.includes(id)) {
-      //   return alert("Already added");
-      // }
-      // cartItems.push(id);
-      // localStorage.setItem("cart", JSON.stringify(cartItems));
-
       let userEmail = loginKey[0].email;
       let cartItems = localStorage.getItem("cart");
       // console.log(cartItems);
@@ -38,7 +46,6 @@ const Details = () => {
       console.log(userCartItems);
 
       if (userCartItems.includes(id)) {
-        // return alert("Already added");
         return toast.error("Already added!");
       }
       toast.success("Added Successfully!");
@@ -66,25 +73,9 @@ const Details = () => {
 
   useEffect(() => getProductDetails(), []);
 
-  const Button = styled.button`
-    border: 0px;
-    height: 2.7rem;
-    color: white;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    color: white;
-    background-color: black;
-  `;
-
   const handleImgOnclick=(index)=>{
     setImgIndex(index);
   }
-
-  const FigureStyle=styled(Figure)`
-  &:hover {
-    transform: scale(1.1);
-  }
-  `
 
   return (
     <div>
@@ -113,7 +104,7 @@ const Details = () => {
                 <Col>
                   {container?.image?.map((item,index) => {
                     return (
-                      <FigureStyle>
+                      <FigureStyle key={index}>
                         <Figure.Image
                           style={{ margin: "1px" }}
                           onClick={()=>handleImgOnclick(index)}

@@ -6,8 +6,6 @@ import {
 import { BsInstagram,BsTwitter,BsLinkedin,BsGithub } from "react-icons/bs";
 import styled from 'styled-components';
 
-export default function Footerpage() {
-
 const Footer=styled(MDBFooter)`
 margin-top:15rem;
 background-color:rgb(5 5 4 / 79%);
@@ -15,6 +13,8 @@ background-color:rgb(5 5 4 / 79%);
   margin-top:3rem;
 }
 `
+export default function Footerpage() {
+
   return (
     <Footer className='text-center' color='light'  >
       <MDBContainer className='p-4'>

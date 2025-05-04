@@ -3,33 +3,33 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 // import './Component.css';
-const Cards = ({ item }) => {
-  const CardButtonLink = styled(Link)`
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
+const CardButtonLink = styled(Link)`
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: none;
+  &:hover {
     text-decoration: none;
-    &:hover {
-      text-decoration: none;
-      color:black;
-    }
-    @media (max-width: 700px) {
-      // color: red;
-    }
-  `;
+    color:black;
+  }
+  @media (max-width: 700px) {
+    // color: red;
+  }
+`;
+const ProductCard = styled(Card)`
+  width: 18rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  background-color: #f7f5f5;
+  @media (max-width: 700px) {
+    width: 23rem;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+const Cards = ({ item }) => {
 
-  const ProductCard = styled(Card)`
-    width: 18rem;
-    margin-left: 1rem;
-    margin-top: 1rem;
-    background-color: #f7f5f5;
-    @media (max-width: 700px) {
-      width: 23rem;
-    }
-    &:hover {
-      transform: scale(1.1);
-    }
-  `;
   return (
     <ProductCard>
       <CardButtonLink id="cartNameButton" to={`/details/${item.id}`}>

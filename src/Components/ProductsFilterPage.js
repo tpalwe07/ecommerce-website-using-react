@@ -1,15 +1,8 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
 import { Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
-
-function valuetext(value) {
-  return `${value}°C`;
-}
 
 const ProductsFilterPage = ({
   isChecked,
@@ -17,24 +10,28 @@ const ProductsFilterPage = ({
   filterByCompany,
   clearFilters,
   sliderValue,
-  setSliderValue,
-  rangeSelector,
+  selectedCompany,
+  setSelectedCompany,
+  filterByPrice
 }) => {
   return (
     <div>
       <h3>Shop By</h3>
-      <Form.Label style={{ margin: "1rem 0px 2px 0px" }}>Price</Form.Label>
+      <Form.Label style={{ margin: "1rem 0px 2px 0px" }}>Price ( products will be shown from 0 to selected value )</Form.Label>
       {/* <Form.Range value={sliderValue} onChange={rangeSelector} />  */}
       <Box sx={{ width: 300 }}>
         <Slider
-          aria-label="Temperature"
-          defaultValue={1}
-          getAriaValueText={valuetext}
+          aria-label="Price"
+          value={sliderValue}
+          onChange={(e) => {
+            filterByPrice(e);
+          }}
+          getAriaValueText={() => `Price Range`}
           valueLabelDisplay="auto"
-          step={1}
+          step={10000}
           marks
-          min={0}
-          max={100}
+          min={12600}
+          max={6000000}
         />
       </Box>
       <Form.Label style={{ margin: "1rem 0px 2px 0px" }}>Category</Form.Label>
@@ -74,9 +71,14 @@ const ProductsFilterPage = ({
           style={{ margin: "1rem 0px 2px 0px", paddingRight: "1rem" }}
           className="custom-select"
           id="inputGroupSelect01"
-          onChange={filterByCompany}
+          value={selectedCompany}
+          onChange={(e) => {
+            filterByCompany(e);
+            setSelectedCompany(e.target.value);
+          }
+          }
         >
-          <option selected value="1">
+          <option value="1">
             {" "}
             All{" "}
           </option>

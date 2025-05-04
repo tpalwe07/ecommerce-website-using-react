@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,6 +7,23 @@ import Cards from "./Cards";
 import ProductsFilterPage from "./ProductsFilterPage";
 import styled from "styled-components";
 import "./Style.css";
+
+
+const H1Gadgets = styled.h1`
+padding: 45px 0px 0px 40px;
+margin-top: 3rem;
+margin-right: 7rem;
+margin-left: 7rem;
+height: 11rem;
+background-color: #a76e6e;
+color: white;
+@media (max-width: 700px) {
+  margin-right: 2rem;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  height: 10rem;
+}
+`;
 
 const Products = () => {
 
@@ -22,8 +39,8 @@ const Products = () => {
   const [filtersList, setFiltersList] = useState([]);
   const [search, setSearch] = useState("");
   const [searchContainer, setSearchContainer] = useState([]);
-  const [sliderValue, setSliderValue] = useState([0]);
-  const [valueAllCompany,setValueAllCompany] = useState(1)
+  const [sliderValue, setSliderValue] = useState([6000000]);
+  const [selectedCompany,setSelectedCompany] = useState(1);
 
   const checkHandler = (e) => {
     const categoryName = e.target.name;
@@ -48,73 +65,49 @@ const Products = () => {
     if (searchText === "") {
       setSearchContainer(container);
     } else {
-      const searchFilters = container.filter((item) => {
-        if (
-          item.name.toLowerCase().includes(searchText) ||
-          item.category.toLowerCase().includes(searchText)
-        ) {
-          return container;
-        }
-      });
+      const searchFilters = container.filter((item) => item.name.toLowerCase().includes(searchText)  || 
+                                                      item.category.toLowerCase().includes(searchText));
       // refElement.current.focus();
       setSearchContainer(searchFilters);
     }
-    
-
   };
 
   const filterByCompany = (item) => {
     if (item.target.value === "1") {
       setSearchContainer(container);
-    } else if (item.target.value === "2") {
-      const fCompany = container?.filter((item) => {
-        if (item.company.includes("apple")) {
-          return container;
-        }
-      });
+    } 
+    else if (item.target.value === "2") {
+      const fCompany = container?.filter((item) => item.company.includes("apple"));
       setSearchContainer(fCompany);
-    } else if (item.target.value === "3") {
-      const fCompany = container.filter((item) => {
-        if (item.company.includes("samsung")) {
-          return container;
-        }
-      });
+    } 
+    else if (item.target.value === "3") {
+      const fCompany = container.filter((item) => item.company.includes("samsung"));
       setSearchContainer(fCompany);
-    } else if (item.target.value === "4") {
-      const fCompany = container.filter((item) => {
-        if (item.company.includes("dell")) {
-          return container;
-        }
-      });
+    } 
+    else if (item.target.value === "4") {
+      const fCompany = container.filter((item) => item.company.includes("dell"));
       setSearchContainer(fCompany);
-    } else if (item.target.value === "5") {
-      const fCompany = container.filter((item) => {
-        if (item.company.includes("nokia")) {
-          return container;
-        }
-      });
+    } 
+    else if (item.target.value === "5") {
+      const fCompany = container.filter((item) => item.company.includes("nokia"));
       setSearchContainer(fCompany);
-    } else if (item.target.value === "6") {
-      const fCompany = container.filter((item) => {
-        if (item.company.includes("asus")) {
-          return container;
-        }
-      });
+    } 
+    else if (item.target.value === "6") {
+      const fCompany = container.filter((item) => item.company.includes("asus"));
       setSearchContainer(fCompany);
-    } else if (item.target.value === "7") {
-      const fCompany = container.filter((item) => {
-        if (item.company.includes("rolex")) {
-          return container;
-        }
-      });
+    } 
+    else if (item.target.value === "7") {
+      const fCompany = container.filter((item) => item.company.includes("rolex"));
       setSearchContainer(fCompany);
     }
   };
 
-  const clearFilters = (e) => {
+  const clearFilters = () => {
     setSearchContainer(container);
     setFiltersList([]);
     setSearch("");
+    setSliderValue([6000000]);
+    setSelectedCompany(1);
     setIsChecked({
       mobile: false,
       laptop: false,
@@ -124,10 +117,13 @@ const Products = () => {
     });
   };
 
-  const rangeSelector = (e, newValue) => {
+  const filterByPrice = (e) => {
     setSliderValue(e.target.value);
-    // console.log(e.target.value);
+    // const fContainer = container.filter((item) => item.price <= sliderValue)
+    // setSearchContainer(fContainer);
   };
+
+
   useEffect(() => {
     fetch("https://api.pujakaitem.com/api/products")
       // .then(response => console.log(response.json() ))
@@ -140,38 +136,7 @@ const Products = () => {
       })
       .catch((err) => console.error(err));
   }, []);
-  const H1Gadgets = styled.h1`
-    padding: 45px 0px 0px 40px;
-    margin-top: 3rem;
-    margin-right: 7rem;
-    margin-left: 7rem;
-    height: 11rem;
-    background-color: #a76e6e;
-    color: white;
-    @media (max-width: 700px) {
-      margin-right: 2rem;
-      margin-left: 2rem;
-      margin-top: 1rem;
-      height: 10rem;
-    }
-  `;
-  // const SearchInput = styled(Form)`
-  //   margin: auto;
-  //   width: 40rem;
-  //   margin-top: 2rem;
-  //   margin-bottom: 2rem;
-  //   @media (max-width: 700px) {
-  //     width: 22rem;
-  //   }
-  // `;
 
-  // const FilterColumn=styled(Col)`
-  // @media (max-width: 700px) {
-  //   width: 100%;
-  //   padding-left:1rem
-  // }
-  // `
-  
   return (
     <>
       <H1Gadgets> Gadgets </H1Gadgets>
@@ -195,51 +160,30 @@ const Products = () => {
               isChecked={isChecked}
               checkHandler={checkHandler}
               filterByCompany={filterByCompany}
+              filterByPrice= {filterByPrice}
               clearFilters={clearFilters}
               sliderValue={sliderValue}
-              rangeSelector={rangeSelector}
+              selectedCompany={selectedCompany}
+              setSelectedCompany={(val) => setSelectedCompany(val)}
             />
           </Col>
 
           <Col>
-            {/* <Row>
-              {filtersList.length
-                ? container
-                    .filter((item) => {
-                      return filtersList.includes(item.category);
-                    })
-                    .map((item) => {
-                      return (
-                        <>
-                          <Cards item={item} />
-                        </>
-                      );
-                    })
-                : container.map((item) => {
-                    return (
-                      <>
-                        <Cards item={item} />
-                      </>
-                    );
-                  })}
-            </Row> */}
             <Row>
               {filtersList.length
-                ? searchContainer
-                    ?.filter((item) => {
-                      return filtersList.includes(item.category);
-                    })
-                    ?.map((item) => {
+                ?  searchContainer
+                    ?.filter((item) => filtersList.includes(item.category))
+                    ?.map((item, i) => {
                       return (
                         <>
-                          <Cards item={item} />
+                          <Cards key={i} item={item} />
                         </>
                       );
                     })
-                : searchContainer?.map((item) => {
+                : searchContainer?.map((item,i) => {
                     return (
                       <>
-                        <Cards item={item} />
+                        <Cards key={i} item={item} />
                       </>
                     );
                   })}
@@ -247,7 +191,6 @@ const Products = () => {
           </Col>
         </Row>
       </Container>
-      );
     </>
   );
 };
